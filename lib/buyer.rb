@@ -19,25 +19,38 @@ class Buyer < ActiveRecord::Base
     end
   end
 
-  def adopt_dog
-    puts "\nGreat! Are you okay with a special needs dog?(y/n)"
-    s = gets.chomp
-    puts "\nThe dogs available to you are:"
-    if s == "y"
-      Dog.all.each do |dog|
-        puts dog.name
-      end
-    elsif s == "n"
-      Dog.not_special.each do |dog|
-        puts dog.name
-      end
+  def show_dogs(array)
+    array.all.each do |dog|
+      puts dog.name
+      puts "age: #{dog.age}"
+      puts "height: #{dog.height}"
+      puts "weight: #{dog.weight}"
+      puts "height: #{dog.height}"
+      puts "price: #{dog.price}"
+      puts "breed: #{dog.breed}"
     end
-    puts "\nPlease enter the name of the dog you would like to adopt."
-    chosen_one = gets.chomp
-    self.adopt(chosen_one)
-    puts "\nYou have adopted #{chosen_one}!"
-    binding.pry
   end
+
+
+  # def adopt_dog
+  #   puts "\nGreat! Are you okay with a special needs dog?(y/n)"
+  #   s = gets.chomp
+  #   puts "\nThe dogs available to you are:"
+  #   if s == "y"
+  #     Dog.all.each do |dog|
+  #       puts dog.name
+  #     end
+  #   elsif s == "n"
+  #     Dog.not_special.each do |dog|
+  #       puts dog.name
+  #     end
+  #   end
+  #   puts "\nPlease enter the name of the dog you would like to adopt."
+  #   chosen_one = gets.chomp
+  #   self.adopt(chosen_one)
+  #   puts "\nYou have adopted #{chosen_one}!"
+  #   binding.pry
+  # end
 
 
 
