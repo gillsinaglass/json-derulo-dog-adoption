@@ -5,7 +5,7 @@ class Dog < ActiveRecord::Base
 
 
   def self.not_special
-    self.where(special_needs: false)
+    self.where(disabled: false)
   end
 
 end

@@ -2,24 +2,6 @@ class Buyer < ActiveRecord::Base
   has_many :adoptions
   has_many :dogs, through: :adoptions
 
-  # attr_reader :name
-  #
-  # def initialize(name)
-  #   @name = name
-  # end
-  #
-  # def adoptions
-  #   Adoption.all.select do |a|
-  #     a.buyer == self
-  #   end
-  # end
-  #
-  # def dogs
-  #   self.adoptions.collect do |a|
-  #     a.dog
-  #   end
-  # end
-  #
   def adopt(dog_name)
     dog = Dog.find_by(name: dog_name)
     ad = Adoption.new(buyer: self, dog: dog)
@@ -31,13 +13,13 @@ class Buyer < ActiveRecord::Base
     if self.adoptions == []
       puts "You haven't adopted any dogs."
     else
-      self.adoptions.all.each do |adoption|
+      self.adoptions.each do |adoption|
         puts "You own #{adoption.dog.name}.\n"
       end
     end
   end
 
-  def adopt_prompt
+  def adopt_dog
     puts "\nGreat! Are you okay with a special needs dog?(y/n)"
     s = gets.chomp
     puts "\nThe dogs available to you are:"
@@ -54,6 +36,7 @@ class Buyer < ActiveRecord::Base
     chosen_one = gets.chomp
     self.adopt(chosen_one)
     puts "\nYou have adopted #{chosen_one}!"
+    binding.pry
   end
 
 
