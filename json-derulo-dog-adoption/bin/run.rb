@@ -33,23 +33,23 @@ while answer != "3"
 end
 
 puts "\nThank you for choosing JSON Derulo's Dog Adoption Agency!"
-# if answer == "n"
-#   puts "\nCome back soon!"
-# elsif answer == "y"
-#   puts "\nGreat! Are you okay with a special needs dog?(y/n)"
-#   s = gets.chomp
-#   if s == "y"
-#     Dog.all.each do |dog|
-#       puts dog.name
-#     end
-#   elsif s == "n"
-#     Dog.not_special.each do |dog|
-#       puts dog.name
-#     end
-#   end
-#   puts "\nPlease enter the name of the dog you would like to adopt."
-#   chosen_one = gets.chomp
-#   user.adopt(chosen_one)
-#   puts "\nYou have adopted #{chosen_one}!"
+if answer == "n"
+  puts "\nCome back soon!"
+elsif answer == "y"
+  puts "\nGreat! Are you okay with a special needs dog?(y/n)"
+  s = gets.chomp
+  if s == "y"
+    Dog.all.each do |dog|
+      puts dog.name
+    end
+  elsif s == "n"
+    Dog.not_special.each do |dog|
+      puts dog.name
+    end
+  end
+  puts "\nPlease enter the name of the dog you would like to adopt."
+  chosen_one = gets.chomp
+  user.adopt(chosen_one)
+  puts "\nYou have adopted #{chosen_one}!"
 
-# end
+end
