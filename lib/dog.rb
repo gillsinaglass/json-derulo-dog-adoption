@@ -21,19 +21,43 @@ class Dog < ActiveRecord::Base
 
   def self.puppies
     self.all.select do |dog|
-      dog.age <= 1
+      dog.age == "Baby" || dog.age == "Young"
     end
   end
 
   def self.adults
     self.all.select do |dog|
-      dog.age > 1 && dog.age < 7
+      dog.age == "Adult"
     end
   end
 
   def self.olds
     self.all.select do |dog|
-      dog.age >= 7
+      dog.age == "Senior"
+    end
+  end
+
+  def self.smalls
+    self.all.select do |dog|
+      dog.size == "S"
+    end
+  end
+
+  def self.mediums
+    self.all.select do |dog|
+      dog.size == "M"
+    end
+  end
+
+  def self.larges
+    self.all.select do |dog|
+      dog.size == "L"
+    end
+  end
+
+  def self.xls
+    self.all.select do |dog|
+      dog.size == "XL"
     end
   end
 
