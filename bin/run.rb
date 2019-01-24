@@ -1,12 +1,14 @@
 require_relative '../config/environment'
-Qapi.get_breeds
-input = gets.chomp
-Zapi.get_pet_by_location(input)
-# puts "\n\n\n\n\n\n"
-#
 cli = Cli.new
 
+Qapi.get_breeds
+
+
 cli.ask_name
+
+input = cli.ask_location
+
+Zapi.get_pet_by_location(input)
 
 cli.login
 
