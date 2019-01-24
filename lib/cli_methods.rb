@@ -1,7 +1,7 @@
 class Cli
 
   attr_accessor :user, :name, :answer, :prompt, :disability, :valid_dogs, :valid_disability
-  attr_accessor :ageq, :valid_age, :groupq, :valid_group
+  attr_accessor :ageq, :valid_age, :groupq, :valid_group, :location
 
 
 
@@ -18,6 +18,7 @@ _(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
            /                    _/          _/ "
     @user = nil
     @name = nil
+    @location = nil
     @answer = nil
     @disability = []
     @ageq = []
@@ -28,6 +29,13 @@ _(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
     @valid_dogs = []
 
     @prompt = TTY::Prompt.new
+  end
+
+  def ask_location
+    self.location = prompt.ask("What is your zip code?") do |q|
+      q.required true
+      q.validate /^\d+$/
+    end
   end
 
   def ask_name
