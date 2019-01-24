@@ -1,7 +1,7 @@
 class Cli
 
-  attr_accessor :user, :name, :answer, :prompt, :disability, :valid_dogs, :valid_disability
-  attr_accessor :ageq, :valid_age, :groupq, :valid_group, :location
+  attr_accessor :user, :name, :answer, :prompt, :disableq, :valid_dogs, :valid_disability
+  attr_accessor :ageq, :valid_age, :groupq, :valid_group, :location, :sizeq, :valid_size
 
 
 
@@ -20,12 +20,14 @@ _(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
     @name = nil
     @location = nil
     @answer = nil
-    @disability = []
+    @disableq = []
     @ageq = []
     @groupq = []
+    @sizeq = []
     @valid_disability = []
     @valid_age = []
     @valid_group = []
+    @valid_size = []
     @valid_dogs = []
 
     @prompt = TTY::Prompt.new
@@ -71,10 +73,12 @@ _(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
   end
 
   def adopt_dog
-    self.disability = self.attribute_question({'Not disabled': 1, 'Disabled': 2})
+    self.disableq = self.attribute_question({'Not disabled': 1, 'Disabled': 2})
     self.disabled
-    # self.ageq = self.attribute_question({'Puppy': 1, 'Middle-aged dog': 2, 'Old dog': 3})
-    # self.age
+    self.sizeq = self.attribute_question({'Small': 1, 'Medium': 2, 'Large': 3, 'Extra Large': 4})
+    self.size
+    self.ageq = self.attribute_question({'Puppy': 1, 'Adult': 2, 'Senior': 3})
+    self.age
     self.groupq = self.attribute_question({'Toy': 1, 'Hound': 2, 'Terrier': 3, 'Working': 4, 'Mixed': 5, 'Non-Sporting': 6, 'Sporting': 7, 'Herding': 8})
     self.group
     self.show_valid_dogs
@@ -99,7 +103,7 @@ _(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
   end
 
   def disabled
-    if self.disability.include?(1)
+    if self.disableq.include?(1)
       if Dog.not_special != nil
         Dog.not_special.each do |dog|
           self.valid_dogs << dog
@@ -107,11 +111,46 @@ _(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
         end
       end
     end
-    if self.disability.include?(2)
+    if self.disableq.include?(2)
       if Dog.special != nil
         Dog.special.each do |dog|
           self.valid_dogs << dog
           self.valid_disability << dog
+        end
+      end
+    end
+  end
+
+  def size
+    if self.sizeq.include?(1)
+      if Dog.smalls != nil
+        Dog.smalls.each do |dog|
+          self.valid_dogs << dog
+          self.valid_size << dog
+        end
+      end
+    end
+    if self.sizeq.include?(2)
+      if Dog.mediums != nil
+        Dog.mediums.each do |dog|
+          self.valid_dogs << dog
+          self.valid_size << dog
+        end
+      end
+    end
+    if self.sizeq.include?(3)
+      if Dog.larges != nil
+        Dog.larges.each do |dog|
+          self.valid_dogs << dog
+          self.valid_size << dog
+        end
+      end
+    end
+    if self.sizeq.include?(4)
+      if Dog.xls != nil
+        Dog.xls.each do |dog|
+          self.valid_dogs << dog
+          self.valid_size << dog
         end
       end
     end
@@ -215,8 +254,7 @@ _(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
     if self.valid_dogs != []
       dogs = self.valid_dogs.uniq
       dogs.select do |a|
-        Adoption.dogs.exclude?(a) && self.valid_disability.include?(a) && self.valid_group.include?(a)
-        # && self.valid_age.include?(a)
+        Adoption.dogs.exclude?(a) && self.valid_disability.include?(a) && self.valid_group.include?(a) && self.valid_age.include?(a)
       end
     end
   end
@@ -233,8 +271,7 @@ _(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
         puts "  breed: #{dog.breed.name}"
         puts "  disabled?: #{dog.disabled}"
         puts "  temperament: #{dog.breed.temperament}"
-        puts "  height: #{dog.breed.height} inches"
-        puts "  weight: #{dog.breed.weight} punds"
+        puts "  size: #{dog.size}"
       end
     end
   end
