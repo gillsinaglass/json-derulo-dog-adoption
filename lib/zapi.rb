@@ -26,6 +26,7 @@ class Zapi
     dog_hash[:breed_id] = self.breed_id(dog["breeds"]["breed"])
     dog_hash[:age] = dog["age"]["$t"]
     dog_hash[:sex] = dog["sex"]["$t"]
+    dog_hash[:size] = dog["size"]["$t"]
     dog_hash[:disabled] = self.special_needs(dog)
     # dog_hash[:dog_group] = dog["dog_group"]
     # dog_hash[:life_expectancy] = dog["life_span"]
