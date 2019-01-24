@@ -5,7 +5,16 @@ class Cli
 
 
   def initialize
-    puts "Welcome to JSON Derulo's Dog Adoption Agency! \n"
+    puts "_______________________________________________________________________________
+        __     __       __     _     _      _____
+        /    /    )   /    )   /|   /       /    )                      /
+-------/-----\\-------/----/---/-| -/-------/----/----__---)__----------/----__-
+      /       \\     /    /   /  | /       /    /   /___) /   ) /   /  /   /   )
+_(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
+    puts "   _                          _
+ /_/  _/ _   _  _/_ . _  _   /_/ _  _  _  _
+/ / /_/ /_/ /_//  / /_// / / / /_//_'/ //_ /_/
+           /                   _/          _/ "
     @user = nil
     @name = nil
     @answer = nil
@@ -37,18 +46,6 @@ class Cli
     self.act
   end
 
-  def adopt_dog
-    self.disability = self.attribute_question({'Not disabled': 1, 'Disabled': 2})
-    self.disabled
-    self.price = self.attribute_question({'less than $200': 1, '$200 or more': 2})
-    self.cost
-    self.show_valid_dogs
-    dog_name = self.choose_dog
-    self.user.adopt(dog_name)
-    puts "\nYou have adopted #{dog_name}!"
-    self.valid_dogs.clear
-  end
-
   def act
     if self.answer == 1
       self.adopt_dog
@@ -57,6 +54,21 @@ class Cli
       self.user.show_adoptions
       self.goodbye
     end
+  end
+
+  def adopt_dog
+    self.disability = self.attribute_question({'Not disabled': 1, 'Disabled': 2})
+    self.disabled
+    self.price = self.attribute_question({'less than $200': 1, '$200 or more': 2})
+    self.cost
+    self.show_valid_dogs
+    if self.true_valid_dogs != []
+      dog_name = self.choose_dog
+      self.user.adopt(dog_name)
+      puts "\nYou have adopted #{dog_name}!"
+    end
+    self.valid_dogs.clear
+    self.true_valid_dogs
   end
 
   def attribute_question(choices)
@@ -97,14 +109,22 @@ class Cli
     end
   end
 
+  def true_valid_dogs
+    if self.valid_dogs != []
+      dogs = self.valid_dogs.uniq
+      dogs.select do |a|
+        Adoption.dogs.exclude?(a)
+      end
+    end
+  end
+
+
   def show_valid_dogs
-    if self.valid_dogs == []
-      puts "Sorry, no pups matched your search!"
+    if self.true_valid_dogs == nil || self.true_valid_dogs == []
+      puts "\nSorry, no pups matched your search!"
     else
-      self.valid_dogs.uniq
       puts "\nThese are the dogs that are available to you:"
-      dogs = self.valid_dogs
-      dogs.each do |dog|
+      self.true_valid_dogs.each do |dog|
         puts "\n#{dog.name}"
         puts "age: #{dog.age}"
         puts "price: #{dog.price}"
@@ -114,8 +134,10 @@ class Cli
   end
 
   def dog_names
-    self.valid_dogs.collect do |dog|
-      dog.name
+    if self.true_valid_dogs != nil
+      self.true_valid_dogs.collect do |dog|
+        dog.name
+      end
     end
   end
 

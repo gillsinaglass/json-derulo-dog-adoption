@@ -12,4 +12,10 @@ class Adoption < ActiveRecord::Base
   #   @buyer = buyer
   #   @@all << self
   # end
+
+  def self.dogs
+    self.all.collect do |a|
+      a.dog
+    end
+  end
 end
