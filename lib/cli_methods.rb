@@ -65,8 +65,8 @@ _(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
   def adopt_dog
     self.disability = self.attribute_question({'Not disabled': 1, 'Disabled': 2})
     self.disabled
-    self.ageq = self.attribute_question({'Puppy': 1, 'Middle-aged dog': 2, 'Old dog': 3})
-    self.age
+    # self.ageq = self.attribute_question({'Puppy': 1, 'Middle-aged dog': 2, 'Old dog': 3})
+    # self.age
     self.groupq = self.attribute_question({'Toy': 1, 'Hound': 2, 'Terrier': 3, 'Working': 4, 'Mixed': 5, 'Non-Sporting': 6, 'Sporting': 7, 'Herding': 8})
     self.group
     self.show_valid_dogs
@@ -207,7 +207,8 @@ _(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
     if self.valid_dogs != []
       dogs = self.valid_dogs.uniq
       dogs.select do |a|
-        Adoption.dogs.exclude?(a) && self.valid_disability.include?(a) && self.valid_age.include?(a) && self.valid_group.include?(a)
+        Adoption.dogs.exclude?(a) && self.valid_disability.include?(a) && self.valid_group.include?(a)
+        # && self.valid_age.include?(a)
       end
     end
   end
