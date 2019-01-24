@@ -37,11 +37,9 @@ class Zapi
     variable = Breed.all.find do |breed|
       breed.name == breed_pf
     end
-    puts variable
     if variable.nil?
-       Breed.all.sample do |breed|
-         breed.id
-       end
+       breed = Breed.all.sample
+       breed.id
     else
       variable.id
     end
