@@ -17,7 +17,7 @@ class Qapi #added q to force other models to load prior to this class
     json = JSON.parse(response.body)
     json.each do |breed|
       self.create_breeds(breed)
-      binding.pry
+      # binding.pry
     end
   end
   def self.create_breeds(breed)

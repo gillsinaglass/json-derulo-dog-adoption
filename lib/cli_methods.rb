@@ -1,6 +1,6 @@
 class Cli
 
-  attr_accessor :user, :name, :answer, :prompt, :disability, :valid_dogs, :valid_price, :valid_disability
+  attr_accessor :user, :name, :answer, :prompt, :disability, :valid_dogs, :valid_disability
   attr_accessor :ageq, :valid_age, :groupq, :valid_group
 
 
@@ -19,7 +19,6 @@ _(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
     @user = nil
     @name = nil
     @answer = nil
-    @price = []
     @disability = []
     @ageq = []
     @groupq = []

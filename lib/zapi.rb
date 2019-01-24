@@ -23,7 +23,7 @@ class Zapi
   def self.create_dogs(dog)
     dog_hash = {}
     dog_hash[:name] = dog["name"]["$t"]
-    dog_hash[:breed_name] = dog["breeds"]["breed"]["$t"]
+    dog_hash[:breed_id] = self.breed_id(dog["breeds"]["breed"]["$t"])
     dog_hash[:age] = dog["age"]["$t"]
     dog_hash[:sex] = dog["sex"]["$t"]
     # dog_hash[:dog_group] = dog["dog_group"]
@@ -31,13 +31,20 @@ class Zapi
 
     dog = Dog.find_or_create_by(dog_hash)
     dog.save
-    binding.pry
   end
 
-  def self.breed_id(breed)
-    breed_name = Breed.all["name"]
-    breed_name.find(breed)
-    binding.pry
-    return breed_id["id"]
+  def self.breed_id(breed_pf)
+    variable = Breed.all.find do |breed|
+      breed.name == breed_pf
+    end
+    puts variable
+    if variable.nil?
+       Breed.all.sample do |breed|
+         breed.id
+       end
+    else
+      variable.id
+    end
   end
+
 end

@@ -19,17 +19,16 @@ class Buyer < ActiveRecord::Base
     end
   end
 
-  def show_dogs(array)
-    array.all.each do |dog|
-      puts dog.name
-      puts "age: #{dog.age}"
-      puts "height: #{dog.height}"
-      puts "weight: #{dog.weight}"
-      puts "height: #{dog.height}"
-      puts "price: #{dog.price}"
-      puts "breed: #{dog.breed}"
-    end
-  end
+  # def show_dogs(array)
+  #   array.all.each do |dog|
+  #     puts dog.name
+  #     puts "age: #{dog.age}"
+  #     puts "height: #{dog.height}"
+  #     puts "weight: #{dog.weight}"
+  #     puts "height: #{dog.height}"
+  #     puts "breed: #{dog.breed}"
+  #   end
+  # end
 
 
   # def adopt_dog
