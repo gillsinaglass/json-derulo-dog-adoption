@@ -20,11 +20,20 @@ class Dog < ActiveRecord::Base
   end
 
   def self.expensive
-    self.where(dogs.price > 200.0)
+    self.all.select do |dog|
+     dog.price > 200.0
+   end
   end
 
   def self.cheap
-    self.where(dogs.price < 200.0)
+    self.all.select do |dog|
+     dog.price < 200.0
+   end
+  end
+
+  def get_dog_breed
+    return breed_info
+    binding.pry
   end
 
   # def self.display_dogs(array)

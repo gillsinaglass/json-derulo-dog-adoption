@@ -114,6 +114,7 @@ _(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
       dogs = self.valid_dogs.uniq
       dogs.select do |a|
         Adoption.dogs.exclude?(a)
+        binding.pry
       end
     end
   end
@@ -143,6 +144,10 @@ _(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
 
   def choose_dog
     self.prompt.select("Choose a dog to adopt.", self.dog_names)
+  end
+
+  def check_dog_breed_attributes
+
   end
 
   def goodbye
