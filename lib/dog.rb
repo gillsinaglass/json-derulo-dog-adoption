@@ -20,11 +20,11 @@ class Dog < ActiveRecord::Base
   end
 
   def self.expensive
-    self.all.where(":price > ?", 200)
+    self.where(dogs.price > 200.0)
   end
 
   def self.cheap
-    self.all.where(":price < ?", 200)
+    self.where(dogs.price < 200.0)
   end
 
   # def self.display_dogs(array)
