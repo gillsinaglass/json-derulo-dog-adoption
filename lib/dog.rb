@@ -20,11 +20,81 @@ class Dog < ActiveRecord::Base
   end
 
   def self.expensive
-    self.where(dogs.price > 200.0)
+    self.all.select do |dog|
+      dog.price > 200.0
+    end
   end
 
   def self.cheap
-    self.where(dogs.price < 200.0)
+    self.all.select do |dog|
+      dog.price < 200.0
+    end
+  end
+
+  def self.puppies
+    self.all.select do |dog|
+      dog.age <= 1
+    end
+  end
+
+  def self.adults
+    self.all.select do |dog|
+      dog.age > 1 && dog.age < 7
+    end
+  end
+
+  def self.olds
+    self.all.select do |dog|
+      dog.age >= 7
+    end
+  end
+
+  def self.toys
+    self.all.select do |dog|
+      dog.breed.breed_group == 'Toy'
+    end
+  end
+
+  def self.hounds
+    self.all.select do |dog|
+      dog.breed.breed_group == 'Hound'
+    end
+  end
+
+  def self.terriers
+    self.all.select do |dog|
+      dog.breed.breed_group == 'Terrier'
+    end
+  end
+
+  def self.workings
+    self.all.select do |dog|
+      dog.breed.breed_group == 'Working'
+    end
+  end
+
+  def self.mixeds
+    self.all.select do |dog|
+      dog.breed.breed_group == 'Mixed'
+    end
+  end
+
+  def self.non_sportings
+    self.all.select do |dog|
+      dog.breed.breed_group == 'Non-Sporting'
+    end
+  end
+
+  def self.sportings
+    self.all.select do |dog|
+      dog.breed.breed_group == 'Sporting'
+    end
+  end
+
+  def self.herdings
+    self.all.select do |dog|
+      dog.breed.breed_group == 'Herding'
+    end
   end
 
   # def self.display_dogs(array)

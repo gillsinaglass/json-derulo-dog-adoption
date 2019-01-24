@@ -33,5 +33,3 @@ class Qapi #added q to force other models to load prior to this class
   end
 
 end
-
-puts Breed.all
