@@ -95,7 +95,8 @@ _(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
     self.valid_age.clear
     self.valid_group.clear
     self.valid_dogs.clear
-    self.true_valid_dogs
+    self.true_valid_dogs.clear
+    self.valid_size.clear
   end
 
   def attribute_question(choices)
@@ -254,8 +255,10 @@ _(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
     if self.valid_dogs != []
       dogs = self.valid_dogs.uniq
       dogs.select do |a|
-        Adoption.dogs.exclude?(a) && self.valid_disability.include?(a) && self.valid_group.include?(a) && self.valid_age.include?(a)
+        Adoption.dogs.exclude?(a) && self.valid_disability.include?(a) && self.valid_group.include?(a) && self.valid_age.include?(a) && self.valid_size.include?(a)
       end
+    else
+      []
     end
   end
 
