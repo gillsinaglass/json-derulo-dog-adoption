@@ -26,6 +26,7 @@
 
   - If you select 'Exit', the program will:
     - Tell you which dogs you've adopted, as well as the time of each adoption.
+    - Tell you the breeds that you own.
     - Thank you for using the JSON Derulo Dog Adoption Agency.
     - End.
 
