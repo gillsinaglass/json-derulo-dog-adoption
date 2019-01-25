@@ -4,7 +4,7 @@ class Buyer < ActiveRecord::Base
 
   def adopt(dog_name) # creates a new adoption with self as buyer and dog as a certain dog
     dog = Dog.find_by(name: dog_name)
-    ad = Adoption.new(buyer: self, dog: dog)
+    ad = Adoption.new(buyer: self, dog: dog, time: Time.now)
     ad.save
   end
 
@@ -14,7 +14,7 @@ class Buyer < ActiveRecord::Base
       puts "You haven't adopted any dogs."
     else
       self.adoptions.each do |adoption|
-        puts "You own #{adoption.dog.name}.\n"
+        puts "You adopted #{adoption.dog.name} on #{adoption.time}.\n"
       end
     end
   end
