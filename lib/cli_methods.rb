@@ -68,6 +68,7 @@ _(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
       self.prompt_menu
     elsif self.answer == 2
       self.user.show_adoptions
+      self.user.show_breeds
       self.goodbye
     end
   end

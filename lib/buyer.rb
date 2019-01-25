@@ -19,6 +19,18 @@ class Buyer < ActiveRecord::Base
     end
   end
 
+  def show_breeds # displays the breeds of the dogs that a user owns
+    unless self.adoptions == []
+      breeds = self.adoptions.collect do |adoption|
+        adoption.dog.breed.name
+      end.uniq
+      puts "\nThe breeds you own are:"
+      breeds.each do |breed|
+        puts "  #{breed}"
+      end
+    end
+  end
+
   # def show_dogs(array)
   #   array.all.each do |dog|
   #     puts dog.name
