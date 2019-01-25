@@ -1,6 +1,6 @@
 class Qapi #added q to force other models to load prior to this class
 
-  def self.get_breeds
+  def self.get_breeds # gives access to and normalizes the breeds from the API
 
     url = "https://api.thedogapi.com/v1/breeds?"
     uri = URI.parse(url)
@@ -20,7 +20,8 @@ class Qapi #added q to force other models to load prior to this class
       # binding.pry
     end
   end
-  def self.create_breeds(breed)
+
+  def self.create_breeds(breed) # normalizes a breed
     breed_hash = {}
     breed_hash[:name] = breed["name"]
     breed_hash[:weight] = breed["weight"]["imperial"]
