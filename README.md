@@ -1,59 +1,34 @@
-# Module One Final Project Guidelines
+# Module One Final Project - Ryan Gill & Andrea Williams
+  This program is a dog adoption agency that allows the user to search for and adopt dogs in their area.
 
-Congratulations, you're at the end of module one! You've worked crazy hard to get here and have learned a ton.
+# To install:
+1. Fork and Clone this repository
+2. cd to the directory 'json-derulo-dog-adoption'
+3. run Bundle Install on the terminal
 
-For your final project, we'll be building a Command Line database application.
+# To Run:
+- To run rspec tests, type 'rspec' in the terminal
+- To run the program, type 'ruby bin/run.rb' in the terminal
 
-## Project Requirements
+# To Use:
+1. The program will ask you for a name. Valid names can't have any spaces, numbers, or symbols.
+2. The program will ask you for a zip code. Your input must be a valid USA zip code.
+3. The program will greet you and display a menu. Press Enter to select an option.
 
-### Option One - Data Analytics Project
+  - If you select 'Adopt a new dog', the program will begin the adoption process.
+    - The program will ask you a series of questions to narrow down the search for your new pup.
+      - For each of these questions, you can make multiple selections (space to select/deselect, enter to finalize).
+      - Your search results will only include dogs that match your answer for all of the questions.
+    - Once you have answered all of the questions, the program will display the dogs in your zip code that are available to you.
+      - You will be able to see the dog's name, age, breed, disability status, temperament, and size.
+    - The program will prompt you to select a dog to adopt. Press Enter to select an option.
+    - The program will tell you which dog you've just adopted, and return you to the main menu. From there you can adopt another dog, or exit. Each dog may only be adopted once, and won't come up again in any more searches.
 
-1. Access a Sqlite3 Database using ActiveRecord.
-2. You should have at minimum three models including one join model. This means you must have a many-to-many relationship.
-3. You should seed your database using data that you collect either from a CSV, a website by scraping, or an API.
-4. Your models should have methods that answer interesting questions about the data. For example, if you've collected info about movie reviews, what is the most popular movie? What movie has the most reviews?
-5. You should provide a CLI to display the return values of your interesting methods.  
-6. Use good OO design patterns. You should have separate classes for your models and CLI interface.
+  - If you select 'Exit', the program will:
+    - Tell you which dogs you've adopted, as well as the time of each adoption.
+    - Tell you the breeds that you own.
+    - Thank you for using the JSON Derulo Dog Adoption Agency.
+    - End.
 
-  **Resource:** [Easy Access APIs](https://github.com/learn-co-curriculum/easy-access-apis)
-
-### Option Two - Command Line CRUD App
-
-1. Access a Sqlite3 Database using ActiveRecord.
-2. You should have a minimum of three models.
-3. You should build out a CLI to give your user full CRUD ability for at least one of your resources. For example, build out a command line To-Do list. A user should be able to create a new to-do, see all todos, update a todo item, and delete a todo. Todos can be grouped into categories, so that a to-do has many categories and categories have many to-dos.
-4. Use good OO design patterns. You should have separate models for your runner and CLI interface.
-
-### Brainstorming and Proposing a Project Idea
-
-Projects need to be approved prior to launching into them, so take some time to brainstorm project options that will fulfill the requirements above.  You must have a minimum of four [user stories](https://en.wikipedia.org/wiki/User_story) to help explain how a user will interact with your app.  A user story should follow the general structure of `"As a <role>, I want <goal/desire> so that <benefit>"`. In example, if we were creating an app to randomly choose nearby restaurants on Yelp, we might write:
-
-* As a user, I want to be able to enter my name to retrieve my records
-* As a user, I want to enter a location and be given a random nearby restaurant suggestion
-* As a user, I should be able to reject a suggestion and not see that restaurant suggestion again
-* As a user, I want to be able to save to and retrieve a list of favorite restaurant suggestions
-
-## Instructions
-
-1. Fork and clone this repository.
-2. Build your application. Make sure to commit early and commit often. Commit messages should be meaningful (clearly describe what you're doing in the commit) and accurate (there should be nothing in the commit that doesn't match the description in the commit message). Good rule of thumb is to commit every 3-7 mins of actual coding time. Most of your commits should have under 15 lines of code and a 2 line commit is perfectly acceptable.
-3. Make sure to create a good README.md with a short description, install instructions, a contributors guide and a link to the license for your code.
-4. Make sure your project checks off each of the above requirements.
-5. Prepare a video demo (narration helps!) describing how a user would interact with your working project.
-    * The video should:
-      - Have an overview of your project.(2 minutes max)
-6. Prepare a presentation to follow your video.(3 minutes max)
-    * Your presentation should:
-      - Describe something you struggled to build, and show us how you ultimately implemented it in your code.
-      - Discuss 3 things you learned in the process of working on this project.
-      - Address, if anything, what you would change or add to what you have today?
-      - Present any code you would like to highlight.   
-7. *OPTIONAL, BUT RECOMMENDED*: Write a blog post about the project and process.
-
----
-### Common Questions:
-- How do I turn off my SQL logger?
-```ruby
-# in config/environment.rb add this line:
-ActiveRecord::Base.logger = nil
-```
+# LICENSE
+  refer to the LICENSE.md file

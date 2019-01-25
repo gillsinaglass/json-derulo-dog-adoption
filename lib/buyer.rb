@@ -2,19 +2,31 @@ class Buyer < ActiveRecord::Base
   has_many :adoptions
   has_many :dogs, through: :adoptions
 
-  def adopt(dog_name)
+  def adopt(dog_name) # creates a new adoption with self as buyer and dog as a certain dog
     dog = Dog.find_by(name: dog_name)
-    ad = Adoption.new(buyer: self, dog: dog)
+    ad = Adoption.new(buyer: self, dog: dog, time: Time.now)
     ad.save
   end
 
-  def show_adoptions
+  def show_adoptions # displays the dogs that the user has adopted
     puts "\n"
     if self.adoptions == []
       puts "You haven't adopted any dogs."
     else
       self.adoptions.each do |adoption|
-        puts "You own #{adoption.dog.name}.\n"
+        puts "You adopted #{adoption.dog.name} on #{adoption.time}.\n"
+      end
+    end
+  end
+
+  def show_breeds # displays the breeds of the dogs that a user owns
+    unless self.adoptions == []
+      breeds = self.adoptions.collect do |adoption|
+        adoption.dog.breed.name
+      end.uniq
+      puts "\nThe breeds you own are:"
+      breeds.each do |breed|
+        puts "  #{breed}"
       end
     end
   end

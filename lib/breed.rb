@@ -7,13 +7,13 @@ class Breed < ActiveRecord::Base
   #   breed.save
   # end
 
-  def self.groups
+  def self.groups # collects all of the breed groups
     self.all.collect do |breed|
       breed.breed_group
     end
   end
 
-  def self.create_groups
+  def self.create_groups # assigns a group to the breeds that don't already have groups
     no_group = self.all.select {|breed| breed.breed_group == nil}
     no_group.each do |breed|
       breed.breed_group = "Mixed"

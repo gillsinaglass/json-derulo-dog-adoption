@@ -1,6 +1,6 @@
 class Zapi
 
-  def self.get_pet_by_location(location = 22201)
+  def self.get_pet_by_location(location = 22201) # gives access to and normalizes the dogs from the API
     url = "http://api.petfinder.com/pet.find?key=5e5659c7c4e98c435e3054ba7a51454a&animal=dog&format=json&location=#{location}"
     uri = URI.parse(url)
     request = Net::HTTP::Get.new(uri)
@@ -20,7 +20,7 @@ class Zapi
     end
   end
 
-  def self.create_dogs(dog)
+  def self.create_dogs(dog) # normalizes a dog
     dog_hash = {}
     dog_hash[:name] = dog["name"]["$t"]
     dog_hash[:breed_id] = self.breed_id(dog["breeds"]["breed"])
@@ -28,14 +28,12 @@ class Zapi
     dog_hash[:sex] = dog["sex"]["$t"]
     dog_hash[:size] = dog["size"]["$t"]
     dog_hash[:disabled] = self.special_needs(dog)
-    # dog_hash[:dog_group] = dog["dog_group"]
-    # dog_hash[:life_expectancy] = dog["life_span"]
 
     dog = Dog.find_or_create_by(dog_hash)
     dog.save
   end
 
-  def self.special_needs(dog)
+  def self.special_needs(dog) # assigns a disability status to a dog
     if dog["sex"]["$t"] == "F"
       return true
     else
@@ -43,7 +41,7 @@ class Zapi
     end
   end
 
-  def self.breed_id(breed_pf)
+  def self.breed_id(breed_pf) # assigns a breed id to a dog
     if breed_pf.kind_of?(Array)
       breed = Breed.all.sample
       breed.id

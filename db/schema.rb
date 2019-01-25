@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_24_205750) do
+ActiveRecord::Schema.define(version: 2019_01_25_002059) do
 
   create_table "adoptions", force: :cascade do |t|
     t.integer "buyer_id"
     t.integer "dog_id"
+    t.datetime "time"
   end
 
   create_table "breeds", force: :cascade do |t|
