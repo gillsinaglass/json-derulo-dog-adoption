@@ -7,3 +7,4 @@ ActiveRecord::Base.logger = nil
 require_all 'lib'
 require_all 'db'
 require_relative '../lib/breed.rb'
+require_relative '../lib/qapi.rb'
