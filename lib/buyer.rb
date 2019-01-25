@@ -2,13 +2,13 @@ class Buyer < ActiveRecord::Base
   has_many :adoptions
   has_many :dogs, through: :adoptions
 
-  def adopt(dog_name)
+  def adopt(dog_name) # creates a new adoption with self as buyer and dog as a certain dog
     dog = Dog.find_by(name: dog_name)
     ad = Adoption.new(buyer: self, dog: dog)
     ad.save
   end
 
-  def show_adoptions
+  def show_adoptions # displays the dogs that the user has adopted
     puts "\n"
     if self.adoptions == []
       puts "You haven't adopted any dogs."

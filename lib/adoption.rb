@@ -13,7 +13,7 @@ class Adoption < ActiveRecord::Base
   #   @@all << self
   # end
 
-  def self.dogs
+  def self.dogs # collects all dogs of an adoption
     self.all.collect do |a|
       a.dog
     end
