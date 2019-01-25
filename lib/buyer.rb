@@ -11,7 +11,17 @@ class Buyer < ActiveRecord::Base
   def show_adoptions # displays the dogs that the user has adopted
     puts "\n"
     if self.adoptions == []
-      puts "You haven't adopted any dogs."
+      puts "You haven't adopted any dogs.\n\n"
+      puts "        __      _
+        \\.'---.//|
+         |\\./|  \\/
+        _|.|.|_  \\
+       /(  ) ' '  \\
+      |  \\/   . |  \\
+jerk   \\_/\\__/| |
+        V  /V / |
+          /__/ /
+          \\___/\\"
     else
       self.adoptions.each do |adoption|
         puts "You adopted #{adoption.dog.name} on #{adoption.time}.\n"

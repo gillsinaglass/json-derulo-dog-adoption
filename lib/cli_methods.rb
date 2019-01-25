@@ -87,6 +87,14 @@ _(___/____(____/___(____/___/___|/_______/____/___(___ _/_____(___(__/___(___/_"
       dog_name = self.choose_dog
       self.user.adopt(dog_name)
       puts "\nYou have adopted #{dog_name}!"
+      puts "       /^-^\\
+      / o o \\
+     /   Y   \\
+     V \\ v / V
+       / - \\
+      /    |
+(    /     |
+ ===/___) ||"
     end
     self.clear_search_results
   end
